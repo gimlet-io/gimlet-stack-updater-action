@@ -27,7 +27,7 @@ echo ""
 
 BRANCH=updating-$(date +%s)
 
-git checkout -b $BRANCH
+git checkout -b "$BRANCH"
 
 stack update -c "$STACK_PATH"
 
@@ -37,6 +37,6 @@ echo "  Generating updated resources.."
 echo "============================="
 echo ""
 
-stack generate -c "$STACK_PATH" --target-path fixture/
+stack generate -c "$STACK_PATH"
 
 git status
