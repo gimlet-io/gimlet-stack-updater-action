@@ -20,5 +20,6 @@ jobs:
       uses: gimlet-io/gimlet-stack-updater-action@d88abca57be9bf053fbf5e19763d179e3d61a147
       with:
         config: 'fixture/stack.yaml'
+        reviewer: "laszlocph"
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
