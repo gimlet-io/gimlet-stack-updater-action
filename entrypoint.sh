@@ -66,5 +66,5 @@ if [ -n "$REVIEWER" ]; then
 else
   gh pr create \
     --title "Updating Gimlet Stack" \
-    --body "$UPDATE_OUTPUT <br/><br/> $GENERATE_OUTPUT"
+    --body "$UPDATE_OUTPUT \n\n---\n\n  $GENERATE_OUTPUT"
 fi
