@@ -59,4 +59,4 @@ git push origin "$BRANCH"
 
 gh auth status
 #gh auth login --with-token < "$GITHUB_TOKEN"
-gh pr create --title "Updating Gimlet Stack" --body "$UPDATE_OUTPUT"
+gh pr create --title "Updating Gimlet Stack" --body "$UPDATE_OUTPUT $GENERATE_OUTPUT"
