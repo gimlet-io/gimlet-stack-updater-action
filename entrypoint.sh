@@ -41,6 +41,14 @@ echo ""
 GENERATE_OUTPUT=$(stack generate -c "$STACK_PATH")
 echo "GENERATE_OUTPUT"
 
+echo ""
+echo "============================="
+echo "  Pushing changes to git.."
+echo "============================="
+echo ""
+
+git config --global user.email "stack@gimlet.io"
+git config --global user.name "Gimlet Stack"
 
 git status
 
