@@ -39,7 +39,7 @@ echo "============================="
 echo ""
 
 GENERATE_OUTPUT=$(stack generate -c "$STACK_PATH")
-echo "GENERATE_OUTPUT"
+echo "$GENERATE_OUTPUT"
 
 echo ""
 echo "============================="
@@ -56,4 +56,5 @@ git add .
 git commit -m "Updating Gimlet Stack"
 git push origin "$BRANCH"
 
+gh auth login
 gh pr create --title "Updating Gimlet Stack" --body "$UPDATE_OUTPUT"
