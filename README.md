@@ -4,38 +4,37 @@
 
 ```
 docker build -t myaction .
-docker run -v $(pwd):/action -it -e GITHUB_REF=refs/tags/alma myaction docker-image=mycompany/myimage:mytag "fixture/stack.yaml"
+docker run -v $(pwd):/action -it --rm myaction "fixture/stack.yaml"
 ```
 
 ## Usage
 
 ```yaml
-name: Build
+name: Update
 on:
-  push:
-    branches:
-      - 'main'
+  push: {}
+
+  schedule:
+    - cron:  '* 13 * * *'
 
 jobs:
-  shipping-artifact:
+  build:
+    name: Demo
     runs-on: ubuntu-latest
-    name: "Shipping artifact"
-    needs:
-    - docker-build
     steps:
-    - name: Check out
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-    - name: Shipping release artifact to Gimlet
-      id: shipping
-      uses: gimlet-io/gimlet-artifact-shipper-action@v0.3.14
-      env:
-        GIMLET_SERVER: ${{ secrets.GIMLET_SERVER }}
-        GIMLET_TOKEN: ${{ secrets.GIMLET_TOKEN }}
-    - name: Artifact ID
-      run: echo "Artifact ID is ${{ steps.shipping.outputs.artifact-id }}"
+
+      - name: Checkout main
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Updating stack
+        uses: gimlet-io/gimlet-stack-updater-action@6b11b9ea3beeb8aa34c48964598287d11b717cc6
+        with:
+          config: 'fixture/stack.yaml'
+          reviewer: "laszlocph"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
 
-See on [https://gimlet.io/gimletd/creating-artifacts/](https://gimlet.io/gimletd/creating-artifacts/)
-# gimlet-stack-updater-action
+See on [https://gimlet.io/gimlet-stack/upgrading-a-stack/](https://gimlet.io/gimlet-stack/upgrading-a-stack/)
