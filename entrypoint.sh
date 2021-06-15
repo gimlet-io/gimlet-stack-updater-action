@@ -47,8 +47,8 @@ echo "  Pushing changes to git.."
 echo "============================="
 echo ""
 
-git config --global user.email "stack@gimlet.io"
-git config --global user.name "Gimlet Stack"
+git config --global user.email "action@github.com"
+git config --global user.name "Github Action"
 
 git status
 
