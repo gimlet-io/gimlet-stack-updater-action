@@ -10,4 +10,7 @@ RUN curl -L https://github.com/gimlet-io/gimlet-stack/releases/download/v0.3.1/s
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+RUN wget https://github.com/cli/cli/releases/download/v1.11.0/gh_1.11.0_linux_386.tar.gz -O ghcli.tar.gz
+RUN tar --strip-components=1 -xf ghcli.tar.gz && mv ./bin/gh /bin/gh
+
 ENTRYPOINT ["/entrypoint.sh"]
