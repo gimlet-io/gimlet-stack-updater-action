@@ -1,0 +1,12 @@
+name: 'Gimlet Stack Updater Action'
+description: ''
+inputs:
+  config:
+    description: 'stack.yaml file location'
+    required: true
+    default: "stack.yaml"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.config }}
