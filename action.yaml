@@ -5,8 +5,12 @@ inputs:
     description: 'stack.yaml file location'
     required: true
     default: "stack.yaml"
+  reviewer:
+    description: 'a github user login who will be the reviewer of the pr'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.config }}
+    - ${{ inputs.reviewer }}

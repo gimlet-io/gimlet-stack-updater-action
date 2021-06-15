@@ -3,6 +3,7 @@
 set -e
 
 STACK_PATH=$1
+REVIEWER=$2
 
 echo "============================="
 echo "  Checking for updates.."
@@ -57,6 +58,13 @@ git commit -m "Updating Gimlet Stack"
 
 git push origin "$BRANCH"
 
-gh auth status
-#gh auth login --with-token < "$GITHUB_TOKEN"
-gh pr create --title "Updating Gimlet Stack" --body "$UPDATE_OUTPUT <br/><br/> $GENERATE_OUTPUT"
+if [ -n "$REVIEWER" ]; then
+  gh pr create \
+    --title "Updating Gimlet Stack" \
+    --body "$UPDATE_OUTPUT <br/><br/> $GENERATE_OUTPUT" \
+    --reviewer "$REVIEWER"
+else
+  gh pr create \
+    --title "Updating Gimlet Stack" \
+    --body "$UPDATE_OUTPUT <br/><br/> $GENERATE_OUTPUT"
+fi
