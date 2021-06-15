@@ -57,6 +57,6 @@ git commit -m "Updating Gimlet Stack"
 
 git push origin "$BRANCH"
 
-gh auth login
+gh auth status
 #gh auth login --with-token < "$GITHUB_TOKEN"
 gh pr create --title "Updating Gimlet Stack" --body "$UPDATE_OUTPUT"
