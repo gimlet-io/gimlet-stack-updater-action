@@ -10,11 +10,15 @@ jobs:
     name: Demo
     runs-on: ubuntu-latest
     steps:
+
     - name: Check out
       uses: actions/checkout@v1
       with:
         fetch-depth: 1
+
     - name: Updating stack
       uses: gimlet-io/gimlet-stack-updater-action@eca115733546f576c9fc537af30b5394779124ed
       with:
         config: 'fixture/stack.yaml'
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

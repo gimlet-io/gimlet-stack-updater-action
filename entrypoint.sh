@@ -29,7 +29,8 @@ BRANCH=updating-$(date +%s)
 
 git checkout -b "$BRANCH"
 
-stack update -c "$STACK_PATH"
+UPDATE_OUTPUT=$(stack update -c "$STACK_PATH")
+echo "$UPDATE_OUTPUT"
 
 echo ""
 echo "============================="
@@ -37,6 +38,14 @@ echo "  Generating updated resources.."
 echo "============================="
 echo ""
 
-stack generate -c "$STACK_PATH"
+GENERATE_OUTPUT=$(stack generate -c "$STACK_PATH")
+echo "GENERATE_OUTPUT"
+
 
 git status
+
+git add .
+git commit -m "Updating Gimlet Stack"
+git push origin "$BRANCH"
+
+gh pr create --title "Updating Gimlet Stack" --body "$UPDATE_OUTPUT"
