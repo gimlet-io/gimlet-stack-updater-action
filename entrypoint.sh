@@ -55,10 +55,7 @@ git status
 git add .
 git commit -m "Updating Gimlet Stack"
 
-echo "pushing"
 git push origin "$BRANCH"
 
-echo "pushed"
-
-gh auth login
+gh auth login --with-token < "$GITHUB_TOKEN"
 gh pr create --title "Updating Gimlet Stack" --body "$UPDATE_OUTPUT"
