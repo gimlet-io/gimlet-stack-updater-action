@@ -3,6 +3,7 @@
 set -e
 
 STACK_PATH=$1
+REVIEWER=$2
 
 echo "============================="
 echo "  Checking for updates.."
@@ -27,9 +28,10 @@ echo ""
 
 BRANCH=updating-$(date +%s)
 
-git checkout -b $BRANCH
+git checkout -b "$BRANCH"
 
-stack update -c "$STACK_PATH"
+UPDATE_OUTPUT=$(stack update -c "$STACK_PATH")
+echo "$UPDATE_OUTPUT"
 
 echo ""
 echo "============================="
@@ -37,6 +39,42 @@ echo "  Generating updated resources.."
 echo "============================="
 echo ""
 
-stack generate -c "$STACK_PATH"
+GENERATE_OUTPUT=$(stack generate -c "$STACK_PATH")
+echo "$GENERATE_OUTPUT"
+
+echo ""
+echo "============================="
+echo "  Pushing changes to git.."
+echo "============================="
+echo ""
+
+git config --global user.email "action@github.com"
+git config --global user.name "Github Action"
 
 git status
+
+git add .
+git commit -m "Updating Gimlet Stack"
+
+git push origin "$BRANCH"
+
+BODY="
+$UPDATE_OUTPUT
+
+---
+
+$GENERATE_OUTPUT
+"
+
+echo "$BODY"
+
+if [ -n "$REVIEWER" ]; then
+  gh pr create \
+    --title "Updating Gimlet Stack" \
+    --body "$BODY" \
+    --reviewer "$REVIEWER"
+else
+  gh pr create \
+    --title "Updating Gimlet Stack" \
+    --body "$BODY"
+fi
