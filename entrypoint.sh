@@ -25,4 +25,12 @@ echo "  Updating.."
 echo "============================="
 echo ""
 
+BRANCH=updating-$(date +%s)
+
+git checkout -b $BRANCH
+
 stack update -c "$STACK_PATH"
+
+stack generate -c "$STACK_PATH"
+
+git status
