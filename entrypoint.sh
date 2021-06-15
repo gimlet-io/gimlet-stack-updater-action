@@ -58,13 +58,21 @@ git commit -m "Updating Gimlet Stack"
 
 git push origin "$BRANCH"
 
+cat > $BODY <<- EOM
+$UPDATE_OUTPUT
+
+---
+
+$GENERATE_OUTPUT
+EOM
+
 if [ -n "$REVIEWER" ]; then
   gh pr create \
     --title "Updating Gimlet Stack" \
-    --body "$UPDATE_OUTPUT <br/><br/> $GENERATE_OUTPUT" \
+    --body "$BODY" \
     --reviewer "$REVIEWER"
 else
   gh pr create \
     --title "Updating Gimlet Stack" \
-    --body "$UPDATE_OUTPUT \n\n---\n\n  $GENERATE_OUTPUT"
+    --body "$BODY"
 fi
