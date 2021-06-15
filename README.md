@@ -4,7 +4,7 @@
 
 ```
 docker build -t myaction .
-docker run -v $(pwd):/action -it -e GITHUB_REF=refs/tags/alma myaction docker-image=mycompany/myimage:mytag "true"
+docker run -v $(pwd):/action -it -e GITHUB_REF=refs/tags/alma myaction docker-image=mycompany/myimage:mytag "fixture/stack.yaml"
 ```
 
 ## Usage

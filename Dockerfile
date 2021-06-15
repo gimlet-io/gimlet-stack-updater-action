@@ -8,5 +8,6 @@ RUN curl -L https://github.com/gimlet-io/gimlet-stack/releases/download/v0.3.0/s
       chmod +x /usr/local/bin/stack
 
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
