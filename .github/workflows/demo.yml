@@ -15,6 +15,6 @@ jobs:
       with:
         fetch-depth: 1
     - name: Updating stack
-      uses: gimlet-io/gimlet-stack-updater-action
+      uses: gimlet-io/gimlet-stack-updater-action@1aa12959a41d49c8aa75ecf67c702460c5d045db
       with:
         config: 'fixture/stack.yaml'
