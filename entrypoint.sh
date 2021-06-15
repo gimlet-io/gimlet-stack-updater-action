@@ -58,13 +58,15 @@ git commit -m "Updating Gimlet Stack"
 
 git push origin "$BRANCH"
 
-read -r -d '' BODY << EOM
+BODY="
 $UPDATE_OUTPUT
 
 ---
 
 $GENERATE_OUTPUT
-EOM
+"
+
+echo "$BODY"
 
 if [ -n "$REVIEWER" ]; then
   gh pr create \
