@@ -17,7 +17,7 @@ jobs:
         ref: main
 
     - name: Updating stack
-      uses: gimlet-io/gimlet-stack-updater-action@a03dd3193c222356f4cb44dc2717421af20bfe9c
+      uses: gimlet-io/gimlet-stack-updater-action@d88abca57be9bf053fbf5e19763d179e3d61a147
       with:
         config: 'fixture/stack.yaml'
       env:
