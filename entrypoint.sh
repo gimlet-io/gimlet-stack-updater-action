@@ -58,7 +58,7 @@ git commit -m "Updating Gimlet Stack"
 
 git push origin "$BRANCH"
 
-cat > $BODY <<- EOM
+read -r -d '' BODY << EOM
 $UPDATE_OUTPUT
 
 ---
