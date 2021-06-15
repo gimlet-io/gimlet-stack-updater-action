@@ -37,6 +37,6 @@ echo "  Generating updated resources.."
 echo "============================="
 echo ""
 
-stack generate -c "$STACK_PATH"
+stack generate -c "$STACK_PATH" --target-path fixture/
 
 git status
