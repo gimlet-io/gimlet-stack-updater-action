@@ -31,6 +31,12 @@ git checkout -b $BRANCH
 
 stack update -c "$STACK_PATH"
 
+echo ""
+echo "============================="
+echo "  Generating updated resources.."
+echo "============================="
+echo ""
+
 stack generate -c "$STACK_PATH"
 
 git status
