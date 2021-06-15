@@ -54,7 +54,11 @@ git status
 
 git add .
 git commit -m "Updating Gimlet Stack"
+
+echo "pushing"
 git push origin "$BRANCH"
+
+echo "pushed"
 
 gh auth login
 gh pr create --title "Updating Gimlet Stack" --body "$UPDATE_OUTPUT"
