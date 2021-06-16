@@ -31,7 +31,9 @@ echo ""
 
 BRANCH="updating-$CURRENT_VERSION-to-$LATEST_VERSION"
 
-git checkout -b "$BRANCH"
+git fetch origin
+# switch or create branch
+git checkout "$BRANCH" 2>/dev/null || git checkout -b "$BRANCH"
 
 UPDATE_OUTPUT=$(stack update -c "$STACK_PATH")
 echo "$UPDATE_OUTPUT"
@@ -78,11 +80,11 @@ echo "$BODY"
 
 if [ -n "$REVIEWER" ]; then
   gh pr create \
-    --title "Updating stack from $CURRENT_VERSION to $LATEST_VERSION.." \
+    --title "Updating stack from $CURRENT_VERSION to $LATEST_VERSION" \
     --body "$BODY" \
     --reviewer "$REVIEWER"
 else
   gh pr create \
-    --title "Updating stack from $CURRENT_VERSION to $LATEST_VERSION.." \
+    --title "Updating stack from $CURRENT_VERSION to $LATEST_VERSION" \
     --body "$BODY"
 fi
